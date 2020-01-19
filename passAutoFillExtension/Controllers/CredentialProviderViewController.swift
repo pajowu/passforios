@@ -157,7 +157,7 @@ class CredentialProviderViewController: ASCredentialProviderViewController, UITa
             var decryptedPassword: Password?
             do {
                 decryptedPassword = try self.passwordStore.decrypt(passwordEntity: passwordEntity, requestPGPKeyPassphrase: self.requestPGPKeyPassphrase)
-                let username = decryptedPassword?.username ?? decryptedPassword?.login ?? ""
+                let username = decryptedPassword?.username ?? decryptedPassword?.login ?? decryptedPassword?.nameFromPath ?? ""
                 let password = decryptedPassword?.password ?? ""
                 DispatchQueue.main.async {// prepare a dictionary to return
                     let passwordCredential = ASPasswordCredential(user: username, password: password)
